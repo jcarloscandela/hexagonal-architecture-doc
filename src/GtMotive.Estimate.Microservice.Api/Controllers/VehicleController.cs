@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles;
+using GtMotive.Estimate.Microservice.Api.Commands;
+using GtMotive.Estimate.Microservice.Api.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,10 +17,19 @@ namespace GtMotive.Estimate.Microservice.Microservice.Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetVehicles()
+        {
+            var request = new GetVehiclesQuery();
+            var presenter = await _mediator.Send(request);
+
+            return presenter.ActionResult;
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateVehicle()
         {
-            var request = new CreateVehicleRequest();
+            var request = new CreateVehicleCommand();
             var presenter = await _mediator.Send(request);
 
             return presenter.ActionResult;

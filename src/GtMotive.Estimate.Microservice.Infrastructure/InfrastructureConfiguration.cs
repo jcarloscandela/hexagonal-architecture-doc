@@ -3,7 +3,10 @@ using System.Diagnostics.CodeAnalysis;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Infrastructure.Interfaces;
 using GtMotive.Estimate.Microservice.Infrastructure.Logging;
+using GtMotive.Estimate.Microservice.Infrastructure.Persistance;
+using GtMotive.Estimate.Microservice.Infrastructure.Repositories;
 using GtMotive.Estimate.Microservice.Infrastructure.Telemetry;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: CLSCompliant(false)]
@@ -18,6 +21,11 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
             bool isDevelopment)
         {
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+
+            services.AddDbContext<GtMotiveContext>(options =>
+                  options.UseInMemoryDatabase(databaseName: $"GtMotiveContext"));
 
             if (!isDevelopment)
             {

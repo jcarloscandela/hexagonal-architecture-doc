@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GtMotive.Estimate.Microservice.Infrastructure.Interfaces;
 
 namespace GtMotive.Estimate.Microservice.Domain.Interfaces
 {
@@ -7,6 +8,11 @@ namespace GtMotive.Estimate.Microservice.Domain.Interfaces
     /// </summary>
     public interface IUnitOfWork
     {
+        /// <summary>
+        /// Gets vehicle repository.
+        /// </summary>
+        IVehicleRepository VehicleRepository { get; }
+
         /// <summary>
         /// Applies all database changes.
         /// </summary>

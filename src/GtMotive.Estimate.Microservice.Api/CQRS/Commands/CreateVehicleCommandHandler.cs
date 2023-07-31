@@ -5,7 +5,7 @@ using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
 using MediatR;
 
-namespace GtMotive.Estimate.Microservice.Api.Commands
+namespace GtMotive.Estimate.Microservice.Api.CQRS.Commands
 {
     public class CreateVehicleCommandHandler : IRequestHandler<CreateVehicleCommand, ICreateVehiclePresenter>
     {

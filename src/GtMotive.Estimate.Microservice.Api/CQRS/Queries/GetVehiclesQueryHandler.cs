@@ -5,7 +5,7 @@ using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
 using MediatR;
 
-namespace GtMotive.Estimate.Microservice.Api.Queries
+namespace GtMotive.Estimate.Microservice.Api.CQRS.Queries
 {
     public class GetVehiclesQueryHandler : IRequestHandler<GetVehiclesQuery, IGetVehiclesPresenter>
     {

@@ -1,11 +1,10 @@
 ﻿using GtMotive.Estimate.Microservice.Api.UseCases;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Api.Presenters
 {
-    public class GetVehiclesPresenter : IGetVehiclesPresenter, IOutputPortStandard<GetVehiclesOutput>, IGetVehiclesOutputPortNotFound
+    public sealed class GetVehiclesPresenter : IGetVehiclesPresenter, IGetVehiclesOutputPort
     {
         public IActionResult ActionResult { get; private set; }
 

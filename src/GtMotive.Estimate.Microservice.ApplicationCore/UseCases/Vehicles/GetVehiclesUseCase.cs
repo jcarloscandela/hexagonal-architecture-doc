@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 
 namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles
@@ -10,20 +9,17 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles
     public class GetVehiclesUseCase : IUseCase<GetVehiclesInput>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IOutputPortStandard<GetVehiclesOutput> _output;
-        private readonly IGetVehiclesOutputPortNotFound _notFound;
+        private readonly IGetVehiclesOutputPort _outputPort;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetVehiclesUseCase"/> class.
         /// </summary>
         /// <param name="unitOfWork">Unit of work.</param>
-        /// <param name="output">Output. </param>
-        /// <param name="notFound">Notfound. </param>
-        public GetVehiclesUseCase(IUnitOfWork unitOfWork, IOutputPortStandard<GetVehiclesOutput> output, IGetVehiclesOutputPortNotFound notFound)
+        /// <param name="outputPort">Output. </param>
+        public GetVehiclesUseCase(IUnitOfWork unitOfWork, IGetVehiclesOutputPort outputPort)
         {
             _unitOfWork = unitOfWork;
-            _output = output;
-            _notFound = notFound;
+            _outputPort = outputPort;
         }
 
         /// <summary>
@@ -37,11 +33,12 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles
 
             if (result.Count == 0)
             {
-                _notFound.NotFoundHandle("Vehicles not found");
-                return;
+                _outputPort.NotFoundHandle("Vehicles not found");
             }
-
-            _output.StandardHandle(new GetVehiclesOutput(result));
+            else
+            {
+                _outputPort.StandardHandle(new GetVehiclesOutput(result));
+            }
         }
     }
 }

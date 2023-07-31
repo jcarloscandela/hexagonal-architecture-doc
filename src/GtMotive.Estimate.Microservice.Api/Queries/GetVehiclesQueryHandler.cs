@@ -20,8 +20,8 @@ namespace GtMotive.Estimate.Microservice.Api.Queries
 
         public async Task<IGetVehiclesPresenter> Handle(GetVehiclesQuery request, CancellationToken cancellationToken)
         {
-            var input = new GetVehiclesInput();
-            await _useCase.Execute(input);
+            await _useCase.Execute(new GetVehiclesInput());
+
             return _presenter;
         }
     }

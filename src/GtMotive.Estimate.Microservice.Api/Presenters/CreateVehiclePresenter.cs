@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Api.Presenters
 {
-    public class CreateVehiclePresenter : ICreateVehiclePresenter, IOutputPortStandard<CreateVehicleOutput>
+    public sealed class CreateVehiclePresenter : ICreateVehiclePresenter, IOutputPortStandard<CreateVehicleOutput>
     {
         public IActionResult ActionResult { get; private set; }
 

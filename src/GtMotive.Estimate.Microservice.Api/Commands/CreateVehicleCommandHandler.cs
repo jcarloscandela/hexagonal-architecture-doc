@@ -20,8 +20,7 @@ namespace GtMotive.Estimate.Microservice.Api.Commands
 
         public async Task<ICreateVehiclePresenter> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
         {
-            var input = new CreateVehicleInput();
-            await _useCase.Execute(input);
+            await _useCase.Execute(new CreateVehicleInput());
             return _presenter;
         }
     }

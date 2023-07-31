@@ -15,14 +15,14 @@ namespace GtMotive.Estimate.Microservice.Domain.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets model of the vehicle.
-        /// </summary>
-        public string Model { get; set; }
-
-        /// <summary>
         /// Gets or sets brand of the vehicle.
         /// </summary>
         public string Brand { get; set; }
+
+        /// <summary>
+        /// Gets or sets model of the vehicle.
+        /// </summary>
+        public string Model { get; set; }
 
         /// <summary>
         /// Gets or sets plate of the vehicle.

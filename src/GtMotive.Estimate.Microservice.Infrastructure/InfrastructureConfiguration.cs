@@ -24,8 +24,7 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
 
-            services.AddDbContext<GtMotiveContext>(options =>
-                  options.UseInMemoryDatabase(databaseName: $"GtMotiveContext"));
+            services.AddDbContext<GtMotiveContext>(options => options.UseSqlite("Data Source=C:\\Users\\Carlos\\Desktop\\proyectos\\hexagonal-architecture-doc\\db\\GTMotive"));
 
             if (!isDevelopment)
             {

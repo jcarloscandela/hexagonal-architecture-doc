@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
-using GtMotive.Estimate.Microservice.Api.Commands;
-using GtMotive.Estimate.Microservice.Api.Queries;
+using GtMotive.Estimate.Microservice.Api.CQRS.Commands;
+using GtMotive.Estimate.Microservice.Api.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

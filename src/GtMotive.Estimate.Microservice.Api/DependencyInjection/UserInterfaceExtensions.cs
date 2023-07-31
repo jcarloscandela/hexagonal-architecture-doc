@@ -11,9 +11,9 @@ namespace GtMotive.Estimate.Microservice.Api.DependencyInjection
     {
         public static IServiceCollection AddPresenters(this IServiceCollection services)
         {
-            services.AddSingleton<GetVehiclesPresenter>();
-            services.AddScoped<IGetVehiclesPresenter, GetVehiclesPresenter>();
-            services.AddScoped<IGetVehiclesOutputPort, GetVehiclesPresenter>();
+            services.AddScoped<GetVehiclesPresenter>();
+            services.AddScoped<IGetVehiclesPresenter>(sp => sp.GetService<GetVehiclesPresenter>());
+            services.AddScoped<IGetVehiclesOutputPort>(sp => sp.GetService<GetVehiclesPresenter>());
 
             services.AddScoped<CreateVehiclePresenter>();
             services.AddScoped<ICreateVehiclePresenter, CreateVehiclePresenter>();

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GtMotive.Estimate.Microservice.Domain.Models;
 
-namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles
 {
     /// <summary>
     /// GetVehiclesOutput.

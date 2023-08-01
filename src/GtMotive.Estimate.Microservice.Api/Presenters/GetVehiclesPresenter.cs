@@ -1,5 +1,5 @@
 ﻿using GtMotive.Estimate.Microservice.Api.UseCases;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Api.Presenters

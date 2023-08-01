@@ -1,7 +1,6 @@
-﻿using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
-using GtMotive.Estimate.Microservice.Domain.Models;
+﻿using GtMotive.Estimate.Microservice.Domain.Models;
 
-namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles
+namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle
 {
     /// <summary>
     /// Create Vehicle Input.

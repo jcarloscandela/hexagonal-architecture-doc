@@ -1,4 +1,4 @@
-﻿namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles
+﻿namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles
 {
     /// <summary>
     /// Get Vehicles Output Port.

@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.UseCases;
-using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
 using MediatR;
 
 namespace GtMotive.Estimate.Microservice.Api.CQRS.Commands

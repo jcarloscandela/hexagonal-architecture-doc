@@ -1,8 +1,7 @@
 ﻿using GtMotive.Estimate.Microservice.Api.Presenters;
 using GtMotive.Estimate.Microservice.Api.UseCases;
-using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GtMotive.Estimate.Microservice.Api.DependencyInjection
@@ -17,7 +16,7 @@ namespace GtMotive.Estimate.Microservice.Api.DependencyInjection
 
             services.AddScoped<CreateVehiclePresenter>();
             services.AddScoped<ICreateVehiclePresenter>(sp => sp.GetService<CreateVehiclePresenter>());
-            services.AddScoped<IOutputPortStandard<CreateVehicleOutput>>(sp => sp.GetService<CreateVehiclePresenter>());
+            services.AddScoped<ICreateVehicleOutputPort>(sp => sp.GetService<CreateVehiclePresenter>());
 
             return services;
         }

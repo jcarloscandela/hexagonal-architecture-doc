@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles;
 using GtMotive.Estimate.Microservice.ApplicationCore.Mappings;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles;
 using Microsoft.Extensions.DependencyInjection;
 
 [assembly: CLSCompliant(false)]

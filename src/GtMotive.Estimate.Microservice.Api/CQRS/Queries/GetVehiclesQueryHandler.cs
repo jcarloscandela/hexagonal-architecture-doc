@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.UseCases;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles;
 using MediatR;
 
 namespace GtMotive.Estimate.Microservice.Api.CQRS.Queries

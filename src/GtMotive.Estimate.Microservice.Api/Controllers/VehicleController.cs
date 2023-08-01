@@ -1,7 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.CQRS.Commands;
 using GtMotive.Estimate.Microservice.Api.CQRS.Queries;
+using GtMotive.Estimate.Microservice.Domain.Models;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Microservice.Api.Controllers
@@ -27,9 +29,10 @@ namespace GtMotive.Estimate.Microservice.Microservice.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateVehicle()
+        [ProducesResponseType(typeof(VehicleDto), StatusCodes.Status200OK)]
+        public async Task<IActionResult> CreateVehicle(VehicleDto vehicleDto)
         {
-            var request = new CreateVehicleCommand();
+            var request = new CreateVehicleCommand(vehicleDto);
             var presenter = await _mediator.Send(request);
 
             return presenter.ActionResult;

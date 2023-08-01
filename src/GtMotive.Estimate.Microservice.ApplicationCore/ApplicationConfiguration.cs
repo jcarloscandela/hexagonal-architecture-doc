@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using GtMotive.Estimate.Microservice.Api.UseCases.Vehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.Mappings;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,8 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore
         /// <returns>The modified instance.</returns>
         public static IServiceCollection AddUseCases(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(MappingProfile));
+
             services.AddTransient<IUseCase<GetVehiclesInput>, GetVehiclesUseCase>();
             services.AddTransient<IUseCase<CreateVehicleInput>, CreateVehicleUseCase>();
 

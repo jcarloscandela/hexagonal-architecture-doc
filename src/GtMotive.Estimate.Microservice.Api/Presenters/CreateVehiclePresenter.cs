@@ -11,7 +11,7 @@ namespace GtMotive.Estimate.Microservice.Api.Presenters
 
         public void StandardHandle(CreateVehicleOutput response)
         {
-            var vehicleDto = response?.Vehicle;
+            var vehicleDto = response?.VehicleDto;
 
             ActionResult = new OkObjectResult(vehicleDto);
         }

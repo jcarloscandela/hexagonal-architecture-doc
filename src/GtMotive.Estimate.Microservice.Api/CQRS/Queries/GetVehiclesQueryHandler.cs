@@ -22,7 +22,7 @@ namespace GtMotive.Estimate.Microservice.Api.CQRS.Queries
         {
             await _useCase.Execute(new GetVehiclesInput());
 
-            return await Task.FromResult(_presenter);
+            return _presenter;
         }
     }
 }

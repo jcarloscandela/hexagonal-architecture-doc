@@ -9,8 +9,17 @@ namespace GtMotive.Estimate.Microservice.Api.UseCases.Vehicles
     public class CreateVehicleOutput : IUseCaseOutput
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="CreateVehicleOutput"/> class.
+        /// </summary>
+        /// <param name="vehicleDto">dto.</param>
+        public CreateVehicleOutput(VehicleDto vehicleDto)
+        {
+            VehicleDto = vehicleDto;
+        }
+
+        /// <summary>
         /// Gets created vehicle.
         /// </summary>
-        public Vehicle Vehicle { get; }
+        public VehicleDto VehicleDto { get; }
     }
 }

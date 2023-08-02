@@ -1,6 +1,7 @@
-﻿using System;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using GtMotive.Estimate.Microservice.ApplicationCore.Validators;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Models;
 
@@ -41,9 +42,12 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
                 return;
             }
 
-            if (input.VehicleDto.ManufacturingDate < DateTime.Now.AddYears(-5))
+            var validator = new VehicleValidator();
+            var validationResult = validator.Validate(input.VehicleDto);
+
+            if (!validationResult.IsValid)
             {
-                _outputPort.BadRequestHandle("The vehicle has more than 5 years");
+                _outputPort.BadRequestHandle(string.Join(", ", validationResult.Errors.Select(x => x.ErrorMessage)));
                 return;
             }
 

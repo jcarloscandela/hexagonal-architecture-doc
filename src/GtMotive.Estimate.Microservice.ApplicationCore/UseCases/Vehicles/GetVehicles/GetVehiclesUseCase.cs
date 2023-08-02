@@ -48,6 +48,12 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVe
                 return;
             }
 
+            if (input.StartDate > input.EndDate)
+            {
+                _outputPort.BadRequestHandle("StartDate cannot be bigger than EndDate");
+                return;
+            }
+
             var result = await _unitOfWork.VehicleRepository.GetFreeVehiclesAsync(input.StartDate.Value, input.EndDate.Value);
 
             if (result.Count == 0)

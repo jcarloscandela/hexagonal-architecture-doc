@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.CQRS.Commands;
 using GtMotive.Estimate.Microservice.Api.CQRS.Queries;
 using GtMotive.Estimate.Microservice.Domain.Models;
@@ -20,9 +22,12 @@ namespace GtMotive.Estimate.Microservice.Microservice.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetVehicles()
+        [ProducesResponseType(typeof(IEnumerable<VehicleDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetVehicles([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
         {
-            var request = new GetVehiclesQuery();
+            var request = new GetVehiclesQuery(startDate, endDate);
             var presenter = await _mediator.Send(request);
 
             return presenter.ActionResult;
@@ -30,6 +35,7 @@ namespace GtMotive.Estimate.Microservice.Microservice.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(VehicleDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> CreateVehicle(VehicleDto vehicleDto)
         {
             var request = new CreateVehicleCommand(vehicleDto);

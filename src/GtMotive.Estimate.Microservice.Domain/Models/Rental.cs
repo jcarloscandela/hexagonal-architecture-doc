@@ -17,11 +17,6 @@ namespace GtMotive.Estimate.Microservice.Domain.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets email of the rental.
-        /// </summary>
-        public string Email { get; set; }
-
-        /// <summary>
         /// Gets or sets customer id of the rental.
         /// </summary>
         public int CustomerId { get; set; }

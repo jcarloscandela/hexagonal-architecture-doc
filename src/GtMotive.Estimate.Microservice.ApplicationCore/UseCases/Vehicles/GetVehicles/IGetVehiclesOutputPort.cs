@@ -3,7 +3,7 @@
     /// <summary>
     /// Get Vehicles Output Port.
     /// </summary>
-    public interface IGetVehiclesOutputPort : IOutputPortStandard<GetVehiclesOutput>, IOutputPortNotFound
+    public interface IGetVehiclesOutputPort : IOutputPortStandard<GetVehiclesOutput>, IOutputPortNotFound, IOutputPortBadRequest
     {
     }
 }

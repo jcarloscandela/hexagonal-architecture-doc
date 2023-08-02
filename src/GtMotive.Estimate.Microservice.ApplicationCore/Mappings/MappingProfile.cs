@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GtMotive.Estimate.Microservice.ApplicationCore.Dtos;
 using GtMotive.Estimate.Microservice.Domain.Models;
 
 namespace GtMotive.Estimate.Microservice.ApplicationCore.Mappings
@@ -14,6 +15,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.Mappings
         public MappingProfile()
         {
             CreateMap<VehicleDto, Vehicle>().ReverseMap();
+            CreateMap<RentalDto, Rental>().ReverseMap();
         }
     }
 }

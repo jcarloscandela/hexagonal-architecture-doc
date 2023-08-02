@@ -20,14 +20,7 @@ namespace GtMotive.Estimate.Microservice.Api.CQRS.Commands
 
         public async Task<ICreateVehiclePresenter> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
         {
-            if (request == null)
-            {
-                throw new System.ArgumentNullException(nameof(request));
-            }
-
-            var createVehicleInput = new CreateVehicleInput(request.VehicleDto);
-
-            await _useCase.Execute(createVehicleInput);
+            await _useCase.Execute(new CreateVehicleInput(request?.VehicleDto));
             return _presenter;
         }
     }

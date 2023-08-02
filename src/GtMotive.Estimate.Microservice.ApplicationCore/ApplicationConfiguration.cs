@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using GtMotive.Estimate.Microservice.ApplicationCore.Mappings;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateRental;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore
 
             services.AddTransient<IUseCase<GetVehiclesInput>, GetVehiclesUseCase>();
             services.AddTransient<IUseCase<CreateVehicleInput>, CreateVehicleUseCase>();
+            services.AddTransient<IUseCase<CreateRentalInput>, CreateRentalUseCase>();
 
             return services;
         }

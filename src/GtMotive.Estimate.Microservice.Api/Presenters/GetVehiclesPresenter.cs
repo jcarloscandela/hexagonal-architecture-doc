@@ -8,6 +8,11 @@ namespace GtMotive.Estimate.Microservice.Api.Presenters
     {
         public IActionResult ActionResult { get; private set; }
 
+        public void BadRequestHandle(string message)
+        {
+            ActionResult = new BadRequestObjectResult(message);
+        }
+
         public void NotFoundHandle(string message)
         {
             ActionResult = new NotFoundObjectResult(message);

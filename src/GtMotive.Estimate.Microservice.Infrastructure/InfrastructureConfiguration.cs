@@ -23,6 +23,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IRentalRepository, RentalRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
 
             services.AddDbContext<GtMotiveContext>(options => options.UseSqlite("Data Source=C:\\hexagonal-architecture-doc\\db\\GTMotive"));
 

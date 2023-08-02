@@ -1,10 +1,10 @@
 ﻿using GtMotive.Estimate.Microservice.Api.UseCases;
-using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateRental;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GtMotive.Estimate.Microservice.Api.Presenters
 {
-    public sealed class CreateVehiclePresenter : ICreateVehiclePresenter, ICreateVehicleOutputPort
+    public sealed class CreateRentalPresenter : ICreateRentalPresenter, ICreateRentalOutputPort
     {
         public IActionResult ActionResult { get; private set; }
 
@@ -13,9 +13,9 @@ namespace GtMotive.Estimate.Microservice.Api.Presenters
             ActionResult = new BadRequestObjectResult(message);
         }
 
-        public void StandardHandle(CreateVehicleOutput response)
+        public void StandardHandle(CreateRentalOutput response)
         {
-            ActionResult = new OkObjectResult(response?.VehicleDto);
+            ActionResult = new OkObjectResult(response?.RentalDto);
         }
     }
 }

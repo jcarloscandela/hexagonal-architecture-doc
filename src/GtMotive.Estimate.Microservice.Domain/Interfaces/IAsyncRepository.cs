@@ -17,6 +17,13 @@ namespace GtMotive.Estimate.Microservice.Domain.Interfaces
         Task<IReadOnlyList<T>> GetAllAsync();
 
         /// <summary>
+        /// Item by Id.
+        /// </summary>
+        /// <param name="id">id of the entity.</param>
+        /// <returns>returns entity.</returns>
+        Task<T> GetByIdAsync(int id);
+
+        /// <summary>
         /// Add entity to the repository.
         /// </summary>
         /// <param name="entity">Entity to be added.</param>

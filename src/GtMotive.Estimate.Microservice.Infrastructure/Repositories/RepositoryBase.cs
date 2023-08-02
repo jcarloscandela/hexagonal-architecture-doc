@@ -9,21 +9,26 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
     public class RepositoryBase<T> : IAsyncRepository<T>
         where T : class
     {
-        private readonly GtMotiveContext _context;
-
         public RepositoryBase(GtMotiveContext context)
         {
-            _context = context;
+            Context = context;
         }
+
+        protected GtMotiveContext Context { get; }
 
         public void AddEntity(T entity)
         {
-            _context.Set<T>().Add(entity);
+            Context.Set<T>().Add(entity);
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await Context.Set<T>().ToListAsync();
+        }
+
+        public virtual async Task<T> GetByIdAsync(int id)
+        {
+            return await Context.Set<T>().FindAsync(id);
         }
     }
 }

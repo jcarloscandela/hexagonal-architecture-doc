@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using GtMotive.Estimate.Microservice.Domain.Interfaces;
 using GtMotive.Estimate.Microservice.Domain.Models;
@@ -37,6 +38,12 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
             if (input == null || input.VehicleDto == null)
             {
                 _output.BadRequestHandle("Data cannot be null");
+                return;
+            }
+
+            if (input.VehicleDto.ManufacturingDate < DateTime.Now.AddYears(-5))
+            {
+                _output.BadRequestHandle("The vehicle has more than 5 years");
                 return;
             }
 

@@ -13,6 +13,8 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
         private bool _disposed;
         private Hashtable _repositories;
         private IVehicleRepository _vehicleRepository;
+        private IRentalRepository _rentalRepository;
+        private ICustomerRepository _customerRepository;
 
         public UnitOfWork(GtMotiveContext context)
         {
@@ -20,6 +22,10 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
         }
 
         public IVehicleRepository VehicleRepository => _vehicleRepository ??= new VehicleRepository(_context);
+
+        public IRentalRepository RentalRepository => _rentalRepository ??= new RentalRepository(_context);
+
+        public ICustomerRepository CustomerRepository => _customerRepository ??= new CustomerRepository(_context);
 
         public async Task<int> Save()
         {

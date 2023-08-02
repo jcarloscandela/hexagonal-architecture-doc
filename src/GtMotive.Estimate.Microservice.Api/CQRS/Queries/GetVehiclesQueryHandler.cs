@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.UseCases;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases;
@@ -20,7 +21,12 @@ namespace GtMotive.Estimate.Microservice.Api.CQRS.Queries
 
         public async Task<IGetVehiclesPresenter> Handle(GetVehiclesQuery request, CancellationToken cancellationToken)
         {
-            await _useCase.Execute(new GetVehiclesInput());
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request));
+            }
+
+            await _useCase.Execute(new GetVehiclesInput(request.StartDate, request.EndDate));
 
             return _presenter;
         }

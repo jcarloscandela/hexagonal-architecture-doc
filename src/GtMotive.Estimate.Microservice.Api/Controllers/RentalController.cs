@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using GtMotive.Estimate.Microservice.Api.CQRS.Commands;
 using GtMotive.Estimate.Microservice.ApplicationCore.Dtos;
 using MediatR;
@@ -24,6 +25,17 @@ namespace GtMotive.Estimate.Microservice.Api.Controllers
         public async Task<IActionResult> CreateRental(RentalDto rentDto)
         {
             var request = new CreateRentalCommand(rentDto);
+            var presenter = await _mediator.Send(request);
+
+            return presenter.ActionResult;
+        }
+
+        [HttpPut("Return")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> ReturnRental([FromQuery] string plate, [FromQuery] DateTime returnDate)
+        {
+            var request = new ReturnRentalCommand(plate, returnDate);
             var presenter = await _mediator.Send(request);
 
             return presenter.ActionResult;

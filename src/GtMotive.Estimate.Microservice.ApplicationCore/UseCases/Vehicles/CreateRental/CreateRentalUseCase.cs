@@ -11,7 +11,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
     internal class CreateRentalUseCase : IUseCase<CreateRentalInput>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ICreateRentalOutputPort _output;
+        private readonly ICreateRentalOutputPort _outputPort;
         private readonly IMapper _mapper;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
         public CreateRentalUseCase(IUnitOfWork unitOfWork, ICreateRentalOutputPort output, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _output = output;
+            _outputPort = output;
             _mapper = mapper;
         }
 
@@ -36,13 +36,13 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
         {
             if (input == null || input.RentalDto == null)
             {
-                _output.BadRequestHandle("Data cannot be null");
+                _outputPort.BadRequestHandle("Data cannot be null");
                 return;
             }
 
             if (input.RentalDto.StartDate > input.RentalDto.EndDate)
             {
-                _output.BadRequestHandle("Start date cannot be greater than end date");
+                _outputPort.BadRequestHandle("Start date cannot be greater than end date");
                 return;
             }
 
@@ -50,14 +50,14 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
 
             if (customer == null)
             {
-                _output.BadRequestHandle($"Customer with email {input.RentalDto.CustomerMail} doesn't exist.");
+                _outputPort.BadRequestHandle($"Customer with email {input.RentalDto.CustomerMail} doesn't exist.");
                 return;
             }
 
             var vehicle = await _unitOfWork.VehicleRepository.GetByPlateAsync(input.RentalDto.Plate);
             if (vehicle == null)
             {
-                _output.BadRequestHandle($"Vehicle with plate {input.RentalDto.Plate} doesn't exist.");
+                _outputPort.BadRequestHandle($"Vehicle with plate {input.RentalDto.Plate} doesn't exist.");
                 return;
             }
 
@@ -65,7 +65,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
 
             if (hasRentals)
             {
-                _output.BadRequestHandle($"Customer with email {input.RentalDto.CustomerMail} already has a rental in the selected dates.");
+                _outputPort.BadRequestHandle($"Customer with email {input.RentalDto.CustomerMail} already has a rental in the selected dates.");
                 return;
             }
 
@@ -75,7 +75,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
             _unitOfWork.RentalRepository.AddEntity(entity);
             await _unitOfWork.Save();
 
-            _output.StandardHandle(new CreateRentalOutput(input.RentalDto));
+            _outputPort.StandardHandle(new CreateRentalOutput(input.RentalDto));
         }
     }
 }

@@ -30,5 +30,11 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
         {
             return await Context.Set<T>().FindAsync(id);
         }
+
+        public void UpdateEntity(T entity)
+        {
+            Context.Set<T>().Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;
+        }
     }
 }

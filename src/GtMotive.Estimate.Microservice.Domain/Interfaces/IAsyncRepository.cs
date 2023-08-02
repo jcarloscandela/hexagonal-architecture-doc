@@ -28,5 +28,11 @@ namespace GtMotive.Estimate.Microservice.Domain.Interfaces
         /// </summary>
         /// <param name="entity">Entity to be added.</param>
         public void AddEntity(T entity);
+
+        /// <summary>
+        /// Update entity in memory.
+        /// </summary>
+        /// <param name="entity">Entity to update.</param>
+        void UpdateEntity(T entity);
     }
 }

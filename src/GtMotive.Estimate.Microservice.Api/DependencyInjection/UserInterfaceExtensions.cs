@@ -3,6 +3,7 @@ using GtMotive.Estimate.Microservice.Api.UseCases;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateRental;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.CreateVehicle;
 using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.GetVehicles;
+using GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.ReturnVehicle;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GtMotive.Estimate.Microservice.Api.DependencyInjection
@@ -22,6 +23,10 @@ namespace GtMotive.Estimate.Microservice.Api.DependencyInjection
             services.AddScoped<CreateRentalPresenter>();
             services.AddScoped<ICreateRentalPresenter>(sp => sp.GetService<CreateRentalPresenter>());
             services.AddScoped<ICreateRentalOutputPort>(sp => sp.GetService<CreateRentalPresenter>());
+
+            services.AddScoped<ReturnRentalPresenter>();
+            services.AddScoped<IReturnRentalPresenter>(sp => sp.GetService<ReturnRentalPresenter>());
+            services.AddScoped<IReturnRentalOutputPort>(sp => sp.GetService<ReturnRentalPresenter>());
 
             return services;
         }

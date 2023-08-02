@@ -12,7 +12,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
     public class CreateVehicleUseCase : IUseCase<CreateVehicleInput>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ICreateVehicleOutputPort _output;
+        private readonly ICreateVehicleOutputPort _outputPort;
         private readonly IMapper _mapper;
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
         public CreateVehicleUseCase(IUnitOfWork unitOfWork, ICreateVehicleOutputPort output, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _output = output;
+            _outputPort = output;
             _mapper = mapper;
         }
 
@@ -37,13 +37,13 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
         {
             if (input == null || input.VehicleDto == null)
             {
-                _output.BadRequestHandle("Data cannot be null");
+                _outputPort.BadRequestHandle("Data cannot be null");
                 return;
             }
 
             if (input.VehicleDto.ManufacturingDate < DateTime.Now.AddYears(-5))
             {
-                _output.BadRequestHandle("The vehicle has more than 5 years");
+                _outputPort.BadRequestHandle("The vehicle has more than 5 years");
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace GtMotive.Estimate.Microservice.ApplicationCore.UseCases.Vehicles.Creat
             _unitOfWork.VehicleRepository.AddEntity(entity);
             await _unitOfWork.Save();
 
-            _output.StandardHandle(new CreateVehicleOutput(_mapper.Map<VehicleDto>(entity)));
+            _outputPort.StandardHandle(new CreateVehicleOutput(_mapper.Map<VehicleDto>(entity)));
         }
     }
 }

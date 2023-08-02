@@ -19,5 +19,13 @@ namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
             return await Context.Rentals.AnyAsync(rental => rental.CustomerId == idCustomer &&
                     rental.StartDate <= endDate && rental.EndDate >= startDate);
         }
+
+        public async Task<Rental> GetCurrentRental(int idVehicle, DateTime returnDate)
+        {
+            return await Context.Rentals.FirstOrDefaultAsync(rental =>
+                rental.VehicleId == idVehicle &&
+                rental.StartDate <= returnDate &&
+                rental.EndDate >= returnDate);
+        }
     }
 }

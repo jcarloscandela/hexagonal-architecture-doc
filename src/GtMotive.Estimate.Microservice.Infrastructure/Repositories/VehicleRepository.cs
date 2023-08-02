@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
 {
-    internal class VehicleRepository : RepositoryBase<Vehicle>, IVehicleRepository
+    public class VehicleRepository : RepositoryBase<Vehicle>, IVehicleRepository
     {
         public VehicleRepository(GtMotiveContext context)
             : base(context)

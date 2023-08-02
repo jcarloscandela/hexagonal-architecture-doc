@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
 {
-    internal class RentalRepository : RepositoryBase<Rental>, IRentalRepository
+    public class RentalRepository : RepositoryBase<Rental>, IRentalRepository
     {
         public RentalRepository(GtMotiveContext context)
             : base(context)

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GtMotive.Estimate.Microservice.Infrastructure.Repositories
 {
-    internal class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
+    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
     {
         public CustomerRepository(GtMotiveContext context)
             : base(context)
